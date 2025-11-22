@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>buat kamu</title>
-  </head>
-  <body>
-    <div class="greetings">
-      <span>H</span>
-      <span>A</span>
-      <span>L</span>
-      <span>L</span>
-      <span>O</span>
-    </div>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buat Kamu</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Greeting -->
+  <div class="greetings">
+    <span>H</span>
+    <span>A</span>
+    <span>L</span>
+    <span>L</span>
+    <span>O</span>
+  </div>
 
-    <div class="button">
-      <button>
-        <a href="flower.html">Coba klik ini!!</a>
-      </button>
-    </div>
+  <!-- Tombol -->
+  <div class="button">
+    <button id="kado">🎁 Klik kadonya yaa 🎉</button>
+  </div>
 
-    <!-- Musik -->
-    <audio id="myAudio" autoplay loop>
-      <source src="../Tedi-Haryanto.mp3" type="audio/mp3" />
-    </audio>
+  <!-- Musik -->
+  <audio id="musik" src="Tedi-Harynto.mp3"></audio>
 
-    <script>
-      const audio = document.getElementById("myAudio");
+  <script>
+    const tombol = document.getElementById("kado");
+    const musik = document.getElementById("musik");
 
-      // Browser tidak boleh autoplay sebelum user klik
-      document.addEventListener("click", () => {
-        audio.play();
-      });
-    </script>
-  </body>
+    tombol.addEventListener("click", () => {
+      // mulai dari volume 0
+      musik.volume = 0;
+      musik.play();
+
+      // fade-in pelan ke volume penuh
+      let vol = 0;
+      const fade = setInterval(() => {
+        if (vol < 1) {
+          vol += 0.05; // naikkan volume 5% tiap 200ms
+          musik.volume = vol;
+        } else {
+          clearInterval(fade);
+        }
+      }, 200);
+
+      // berhenti otomatis setelah 30 detik
+      setTimeout(() => {
+        musik.pause();
+        musik.currentTime = 0; // reset ke awal
+      }, 30000);
+    });
+  </script>
+</body>
 </html>
