@@ -9,7 +9,6 @@
   </head>
   <body>
     <div class="greetings">
-      <!-- silahkan menambah kata sesuai keinginan dengan <span>text...</span -->
       <span>H</span>
       <span>A</span>
       <span>L</span>
@@ -22,20 +21,19 @@
         <a href="flower.html">Coba klik ini!!</a>
       </button>
     </div>
+
+    <!-- Musik -->
     <audio id="myAudio" autoplay loop>
       <source src="../ssstikio-1703694315342_ehaSa1Sg.mp3" type="audio/mp3" />
-      Your browser does not support the audio element.
     </audio>
-    <script>
-      function toggleAudio() {
-        var audio = document.getElementById("myAudio");
 
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      }
+    <script>
+      const audio = document.getElementById("myAudio");
+
+      // Browser tidak boleh autoplay sebelum user klik
+      document.addEventListener("click", () => {
+        audio.play();
+      });
     </script>
   </body>
 </html>
